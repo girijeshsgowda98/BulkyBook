@@ -29,6 +29,7 @@
                   Diplay Order
               </th>
               <th></th>
+              <th></th>
     </thead>
     <tbody>
         @foreach(var obj in Model)
@@ -47,6 +48,12 @@
                    <div class="w-75 btn-group" role="group">
                        <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id"
                        class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i>Edit</a>
+                   </div>
+                </td>
+                <td width="20%">
+                   <div class="w-75 btn-group" role="group">
+                       <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id"
+                       class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i>Delete</a>
                    </div>
                 </td>
             </tr>
