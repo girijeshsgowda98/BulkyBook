@@ -1,4 +1,8 @@
 ﻿@model Category
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <form method="post" asp-action="DeletePost">
     <input asp-for ="Id" hidden/>
     <div class="border p-3 mt-4">
