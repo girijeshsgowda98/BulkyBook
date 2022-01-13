@@ -6,6 +6,7 @@ using BulkyBook.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace BulkyBookWeb.Controllers
 {
@@ -80,12 +81,12 @@ namespace BulkyBookWeb.Controllers
         //Post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(CoverType obj)
+        public IActionResult Upsert(ProductVM obj, IFormFile file)
         {
            
             if (ModelState.IsValid)
             {
-                _unitOfWork.CoverType.Update(obj);
+                //_unitOfWork.CoverType.Update(obj);
                 _unitOfWork.Save();
                 TempData["Success"] = "CoverType updated succesfully";
                 return RedirectToAction("Index");
