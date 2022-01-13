@@ -21,7 +21,7 @@ namespace BulkyBookWeb.Controllers
             IEnumerable<CoverType> objCoverTypeList = _unitOfWork.CoverType.GetAll();
             return View(objCoverTypeList);
         }
-        //Get
+        /*//Get
         public IActionResult Create()
         {
             return View();
@@ -40,29 +40,30 @@ namespace BulkyBookWeb.Controllers
                 return RedirectToAction("Index");
             }
             return View(obj);
-        }
+        }*/
 
         //Get
-        public IActionResult Edit(int? id)
+        public IActionResult Upsert(int? id)
         {
+            Product product = new();
             if(id == null || id == 0)
             {
-                return NotFound();
+                //create product
+                return View(product);
+            }
+            else
+            {
+                //update product
             }
             
-            var coverTypeFromDbFirst = _unitOfWork.CoverType.GetFirstOrDefault(u => u.Id == id);
            
-            if(coverTypeFromDbFirst == null)
-            {
-                return NotFound();
-            }
-            return View(coverTypeFromDbFirst);
+            return View(product);
         }
 
         //Post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(CoverType obj)
+        public IActionResult Upsert(CoverType obj)
         {
            
             if (ModelState.IsValid)
