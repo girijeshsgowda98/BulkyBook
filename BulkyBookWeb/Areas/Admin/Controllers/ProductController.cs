@@ -27,7 +27,8 @@ namespace BulkyBookWeb.Controllers
         public IActionResult Index()
         {
             IEnumerable<CoverType> objCoverTypeList = _unitOfWork.CoverType.GetAll();
-            return View(objCoverTypeList);
+            /*return View(objCoverTypeList);*/
+            return View();
         }
         /*//Get
         public IActionResult Create()
@@ -141,6 +142,13 @@ namespace BulkyBookWeb.Controllers
             TempData["Success"] = "CoverType Removed succesfully";
             return RedirectToAction("Index");
         }
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var productList = _unitOfWork.Product.GetAll();
+            return Json(new { data = productList });
+        }
+        #endregion
     }
-
 }
