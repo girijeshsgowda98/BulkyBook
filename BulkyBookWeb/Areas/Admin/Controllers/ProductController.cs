@@ -100,14 +100,33 @@ namespace BulkyBookWeb.Controllers
                     string fileName = Guid.NewGuid().ToString();
                     var uploads = Path.Combine(wwwRootPath, @"images/products");
                     var extension = Path.GetExtension(file.FileName);
+                    //old image remove hear
+                    if(obj.Product.ImgUrl != null)
+                    {
+                        var oldImagePath = Path.Combine(wwwRootPath, obj.Product.ImgUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+
+                    }
+                   
                     using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                     {
-                        fileStreams.CopyTo(fileStreams);
+                        file.CopyTo(fileStreams);
                     }
                     obj.Product.ImgUrl = @"images/products" + fileName + extension;
                 }
 
+                if(obj.Product.Id == 0)
+                {
                     _unitOfWork.Product.Add(obj.Product);
+                }
+                else
+                {
+                    _unitOfWork.Product.Update(obj.Product);
+                }
+               
                 _unitOfWork.Save();
                 TempData["Success"] = "Product created succesfully ";
                 return RedirectToAction("Index");
