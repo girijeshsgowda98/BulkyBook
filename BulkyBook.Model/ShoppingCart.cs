@@ -12,8 +12,6 @@ namespace BulkyBook.Models
     public class ShoppingCart
     {
         public int Id { get; set; }
-
-        // Hello for demo
         public int ProductId { get; set; }
         [ForeignKey("ProductId")]
         [ValidateNever]
