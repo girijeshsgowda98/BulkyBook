@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace BulkyBook.DataAccess.Repository.IRepository
 {
-    public interface IOrderDetailRepository : IRepository<OrderDetail>
+    public interface IOrderHeaderRepository : IRepository<OrderHeader>
     {
-        void Update(OrderDetail obj);
+        void Update(OrderHeader obj);
+        void UpdateStatus(int id, string orderStatus,string? paymentStatus =null);
         
     }
 }
